@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Admin Analytics</h2>
+
+<div class="glass p-3">
+<p>Total Users: {{ total_users }}</p>
+<p>Total Memes: {{ total_memes }}</p>
+
+<h4>Top Memes</h4>
+<ul>
+{% for m in top_memes %}
+  <li>{{ m.title }} (❤️ {{ m.likes }}, 👁️ {{ m.views }})</li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endblock %}

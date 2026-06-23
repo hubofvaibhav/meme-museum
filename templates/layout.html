@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meme Museum</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      transition: 0.3s;
+    }
+
+    .navbar {
+      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.4);
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark navbar-expand-lg px-4">
+  <div class="container-fluid d-flex align-items-center">
+
+    <!-- LEFT SEARCH -->
+    {% if session.get('user') %}
+    <form class="d-flex me-3" action="/search">
+      <input class="form-control form-control-sm me-2" name="q" placeholder="Search memes">
+      <button class="btn btn-outline-light btn-sm">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+    {% endif %}
+
+    <!-- CENTER LOGO -->
+    <div class="mx-auto">
+      <a class="navbar-brand fw-bold fs-4" href="/dashboard">🖼️ Meme Museum</a>
+    </div>
+
+    <!-- RIGHT BUTTONS -->
+    <div class="d-flex align-items-center">
+
+      {% if session.get('user') %}
+
+        <a href="/gallery" class="btn btn-outline-light btn-sm me-2">Gallery</a>
+        <a href="/upload" class="btn btn-outline-light btn-sm me-2">Upload</a>
+        <a href="/trending" class="btn btn-outline-warning btn-sm me-2">🔥 Trending</a>
+
+        <div class="dropdown me-2">
+          <button class="btn btn-outline-info btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i> {{ session.get('username','User') }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+
+      {% else %}
+
+        <a href="/login" class="btn btn-outline-light btn-sm me-2">Login</a>
+        <a href="/register" class="btn btn-outline-success btn-sm">Register</a>
+
+      {% endif %}
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="container mt-4">
+  {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

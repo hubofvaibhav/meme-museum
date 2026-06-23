@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="glass p-4 col-md-6 mx-auto">
+
+<h3>👤 My Profile</h3>
+
+<p><b>User ID:</b> {{ user.user_id }}</p>
+
+<form method="post">
+  <label>Email</label>
+  <input class="form-control mb-2" name="email" value="{{ user.email }}">
+
+  <label>Bio</label>
+  <textarea class="form-control mb-2" name="bio">{{ user.get('bio','') }}</textarea>
+
+  <hr>
+  <h4>Change Password</h4>
+
+  <form method="post" action="/change_password">
+    <input class="form-control mb-2" type="password" name="password" placeholder="New Password">
+    <button class="btn btn-warning">Change Password</button>
+  </form>
+  <hr>
+
+  <button class="btn btn-primary">Update Profile</button>
+
+
+</form>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>{{ meme.title }}</h2>
+
+<img src="{{ meme.image_url }}" width="300" class="mb-3">
+
+<div class="glass p-3">
+  <p>❤️ Likes: {{ meme.likes }}</p>
+  <p>👁️ Views: {{ meme.views }}</p>
+  <p>⬇️ Downloads: {{ meme.downloads }}</p>
+
+  <p><b>Category:</b> {{ meme.category }}</p>
+  <p><b>Detected Labels:</b> {{ meme.labels }}</p>
+  <p><b>Extracted Text:</b> {{ meme.detected_text }}</p>
+</div>
+
+{% endblock %}
